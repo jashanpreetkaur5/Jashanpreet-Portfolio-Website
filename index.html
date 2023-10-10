@@ -4,30 +4,108 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Coming Soon</title>
+    <link rel="stylesheet" href="styles.css">
+    
     <style>
-        /* Add your custom CSS styles here */
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            background-color: #f0f0f0;
-        }
-        .container {
-            padding: 100px;
-        }
-        h1 {
-            font-size: 36px;
-            color: #333;
-        }
-        p {
-            font-size: 18px;
-            color: #777;
-        }
+      /* styles.css */
+
+body {
+    background-color: #333;
+    font-family: Arial, sans-serif;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    text-align: center;
+}
+
+h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+p {
+    font-size: 18px;
+    margin-bottom: 40px;
+}
+
+.countdown {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.timer {
+    margin: 0 10px;
+    font-size: 28px;
+}
+
+span {
+    font-size: 16px;
+    margin-left: 4px;
+}
+
     </style>
+    
+    <script>
+      // countdown.js
+
+function countdown() {
+    const countdownDate = new Date().getTime() + 10 * 24 * 60 * 60 * 1000; // Five days in milliseconds
+
+    const timer = setInterval(function() {
+        const now = new Date().getTime();
+        const distance = countdownDate - now;
+
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        document.getElementById('days').innerHTML = days < 10 ? '0' + days : days;
+        document.getElementById('hours').innerHTML = hours < 10 ? '0' + hours : hours;
+        document.getElementById('minutes').innerHTML = minutes < 10 ? '0' + minutes : minutes;
+        document.getElementById('seconds').innerHTML = seconds < 10 ? '0' + seconds : seconds;
+
+        if (distance < 0) {
+            clearInterval(timer);
+            document.getElementById('countdown').innerHTML = '<p>We are live!</p>';
+        }
+    }, 1000);
+}
+
+countdown();
+
+    </script>
 </head>
 <body>
     <div class="container">
         <h1>Coming Soon</h1>
-        <p>Our website is under construction. We'll be back soon with an amazing experience!</p>
+        <p>Our website is under construction. We'll be back in:</p>
+        <div id="countdown" class="countdown">
+            <div class="timer">
+                <span id="days">00</span>
+                <span>days</span>
+            </div>
+            <div class="timer">
+                <span id="hours">00</span>
+                <span>hours</span>
+            </div>
+            <div class="timer">
+                <span id="minutes">00</span>
+                <span>minutes</span>
+            </div>
+            <div class="timer">
+                <span id="seconds">00</span>
+                <span>seconds</span>
+            </div>
+        </div>
     </div>
+    <script src="countdown.js"></script>
 </body>
 </html>

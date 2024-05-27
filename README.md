@@ -1,3 +1,6 @@
+
+👋 Hi there! I'm Jashanpreet, a passionate web developer specializing in Next.js and React. I build high-performance, responsive web applications with a focus on user experience and clean code. 
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
